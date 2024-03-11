@@ -1,0 +1,9 @@
+spring:
+  config:
+    import: optional:file:.env[.properties]
+
+oss:
+  accessKeyId: ${oss.accessKeyId}
+  accessKeySecret: ${oss.accessKeySecret}
+  endpoint: ${oss.endpoint}
+  domain: ${oss.domain}
