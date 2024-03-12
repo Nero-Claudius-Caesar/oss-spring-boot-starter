@@ -1,6 +1,6 @@
 package cn.nero.oss.utils;
 
-import cn.nero.oss.configuration.OssConfiguration;
+import cn.nero.oss.configuration.OssProperties;
 import com.alibaba.fastjson2.JSON;
 import com.aliyun.oss.OSS;
 import com.aliyun.oss.OSSClientBuilder;
@@ -21,9 +21,9 @@ import java.io.FileInputStream;
 public class OssUtils {
 
     public static OSS initOssClient () {
-        String accessKeyId = OssConfiguration.ACCESS_KEY_Id;
-        String accessKeySecret = OssConfiguration.ACCESS_KEY_SECRET;
-        String endpoint = OssConfiguration.ENDPOINT;
+        String accessKeyId = OssProperties.ACCESS_KEY_Id;
+        String accessKeySecret = OssProperties.ACCESS_KEY_SECRET;
+        String endpoint = OssProperties.ENDPOINT;
 
         return new OSSClientBuilder().build(endpoint, accessKeyId, accessKeySecret);
     }
@@ -35,7 +35,7 @@ public class OssUtils {
      * @return 上传结果
      */
     public static PutObjectResult upload (String filePath, String newPath) {
-        String bucket = OssConfiguration.BUCKET;
+        String bucket = OssProperties.BUCKET;
 
         OSS ossClient = initOssClient();
 
@@ -58,7 +58,7 @@ public class OssUtils {
 
         log.warn("You are using the uploadAndGetUrl method to obtain the address of the uploaded image. Please note that this connection can only be used normally when the permission is Public Read");
 
-        return "https://" + OssConfiguration.BUCKET + "." + OssConfiguration.ENDPOINT + "/" + newPath;
+        return "https://" + OssProperties.BUCKET + "." + OssProperties.ENDPOINT + "/" + newPath;
     }
 
     /**
@@ -68,7 +68,7 @@ public class OssUtils {
      * @return metadata
      */
     public static ObjectMetadata downloadFile (String filePath, String savePath) {
-        String bucket = OssConfiguration.BUCKET;
+        String bucket = OssProperties.BUCKET;
         OSS ossClient = initOssClient();
         try {
             return ossClient.getObject(new GetObjectRequest(bucket, filePath), new File(savePath));
