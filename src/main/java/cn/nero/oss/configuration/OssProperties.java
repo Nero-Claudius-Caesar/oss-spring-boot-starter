@@ -1,6 +1,6 @@
 package cn.nero.oss.configuration;
 
-import lombok.Getter;
+import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
  * @version 1.0.0
  * @since 2024/3/8
  */
-@Getter
+@Data
 @Component
 @ConfigurationProperties(prefix = "oss")
 public class OssProperties {
